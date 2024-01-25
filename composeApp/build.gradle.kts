@@ -1,5 +1,4 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -16,8 +15,7 @@ kotlin {
         }
     }
     
-    jvm("desktop")
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,7 +28,7 @@ kotlin {
     }
     
     sourceSets {
-        val desktopMain by getting
+        //val desktopMain by getting
         
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
@@ -43,9 +41,6 @@ kotlin {
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
-        }
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
         }
     }
 }
@@ -81,17 +76,5 @@ android {
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
-    }
-}
-
-compose.desktop {
-    application {
-        mainClass = "MainKt"
-
-        nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = libs.versions.application.id.get()
-            packageVersion = libs.versions.`package`.version.get()
-        }
     }
 }
