@@ -1,4 +1,4 @@
-rootProject.name = "DashboardComposeMultiplataform"
+rootProject.name = "Dashboard"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

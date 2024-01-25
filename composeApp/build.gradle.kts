@@ -11,7 +11,7 @@ kotlin {
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
         }
     }
@@ -51,7 +51,7 @@ kotlin {
 }
 
 android {
-    namespace = "br.com.souzabrunoj.dashboardcmp"
+    namespace = libs.versions.namespace.get()
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -59,11 +59,11 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        applicationId = "br.com.souzabrunoj.dashboardcmp"
+        applicationId = libs.versions.application.id.get()
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = libs.versions.version.code.get().toInt()
+        versionName = libs.versions.version.name.get()
     }
     packaging {
         resources {
@@ -76,8 +76,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
@@ -90,8 +90,8 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "br.com.souzabrunoj.dashboardcmp"
-            packageVersion = "1.0.0"
+            packageName = libs.versions.application.id.get()
+            packageVersion = libs.versions.`package`.version.get()
         }
     }
 }
