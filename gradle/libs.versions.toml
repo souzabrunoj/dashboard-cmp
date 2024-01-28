@@ -3,11 +3,10 @@
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
-application-id = "br.com.souzabrunoj.dashboardcmp"
-namespace = "br.com.souzabrunoj.dashboardcmp"
+application-id = "br.com.souzabrunoj.storekmp"
+namespace = "br.com.souzabrunoj.storekmp"
 version-code = "1"
 version-name = "1.0.0"
-package-version = "1.0.0"
 
 androidx-activityCompose = "1.8.2"
 androidx-appcompat = "1.6.1"

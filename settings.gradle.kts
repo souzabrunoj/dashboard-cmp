@@ -1,4 +1,4 @@
-rootProject.name = "Dashboard"
+rootProject.name = "StoreKMP"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

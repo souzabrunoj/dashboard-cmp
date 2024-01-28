@@ -1,4 +1,4 @@
-package br.com.souzabrunoj.dashboardcmp
+package br.com.souzabrunoj.storekmp
 
 import App
 import android.os.Bundle
