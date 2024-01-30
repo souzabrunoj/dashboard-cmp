@@ -16,7 +16,7 @@ androidx-material = "1.11.0"
 androidx-test-junit = "1.1.5"
 
 junit = "4.13.2"
-kotlin = "1.9.21"
+kotlin = "1.9.22"
 coroutines = "1.7.3"
 ktor = "2.3.7"
 moko-mvvm = "0.16.1"
