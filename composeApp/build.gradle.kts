@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -30,15 +31,44 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
-            implementation(libs.androidx.activity.compose)
+
+            implementation(project.dependencies.platform(libs.compose.bom))
+            implementation(libs.compose.ui)
+            implementation(libs.compose.activity)
+
+            implementation(libs.coroutines.android)
+            implementation(libs.ktor.okhttp)
+            implementation(libs.ktor.android)
+            implementation(libs.koin.android)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
+
+            implementation(libs.coroutines.core)
+
+            implementation(libs.ktor.core)
+            implementation(libs.ktor.negotiation)
+            implementation(libs.ktor.json)
+            implementation(libs.ktor.logging)
+
+            implementation(libs.moko.mvvm.core)
+            implementation(libs.moko.mvvm.compose)
+
+            implementation(libs.koin.compose)
+            implementation(libs.koin.core)
+            api(libs.image.loader)
+
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.darwin)
+            implementation(libs.koin.core)
         }
     }
 }

@@ -1,3 +1,5 @@
+package br.com.souzabrunoj.storekmp
+
 import platform.UIKit.UIDevice
 
 class IOSPlatform: Platform {

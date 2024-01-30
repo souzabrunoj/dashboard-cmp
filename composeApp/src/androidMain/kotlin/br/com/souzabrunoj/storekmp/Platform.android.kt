@@ -1,3 +1,5 @@
+package br.com.souzabrunoj.storekmp
+
 import android.os.Build
 
 class AndroidPlatform : Platform {
