@@ -4,10 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.ui.tooling.preview.Preview
+import br.com.souzabrunoj.storekmp.presentation.screens.HomeScreen
+import cafe.adriel.voyager.navigator.Navigator
 import com.seiko.imageloader.ImageLoader
 import com.seiko.imageloader.LocalImageLoader
 import com.seiko.imageloader.cache.memory.maxSizePercent
@@ -21,16 +21,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CompositionLocalProvider(LocalImageLoader provides remember { generateImageLoader(this) }) {
-                App()
+                Navigator(screen = HomeScreen)
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun AppAndroidPreview() {
-    App()
 }
 
 fun generateImageLoader(context: Context) = ImageLoader {

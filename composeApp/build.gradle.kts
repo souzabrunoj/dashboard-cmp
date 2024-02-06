@@ -58,11 +58,14 @@ kotlin {
             implementation(libs.ktor.json)
             implementation(libs.ktor.logging)
 
-            implementation(libs.moko.mvvm.core)
-            implementation(libs.moko.mvvm.compose)
-
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
+
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.screenmodel)
+            implementation(libs.voyager.transitions)
+            implementation(libs.voyager.koin)
+
             api(libs.image.loader)
 
             implementation(libs.kotlinx.serialization)

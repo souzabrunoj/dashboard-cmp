@@ -3,6 +3,8 @@ package br.com.souzabrunoj.storekmp
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
+import br.com.souzabrunoj.storekmp.presentation.screens.HomeScreen
+import cafe.adriel.voyager.navigator.Navigator
 import com.seiko.imageloader.ImageLoader
 import com.seiko.imageloader.LocalImageLoader
 import com.seiko.imageloader.component.setupDefaultComponents
@@ -14,7 +16,7 @@ import platform.Foundation.NSUserDomainMask
 
 fun MainViewController() = ComposeUIViewController {
     CompositionLocalProvider(LocalImageLoader provides remember { generateImageLoader() }) {
-        App()
+        Navigator(HomeScreen)
     }
 }
 

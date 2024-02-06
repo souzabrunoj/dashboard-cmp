@@ -6,6 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface HomeRepository {
 
     suspend fun getApiProducts(): List<Product>
-    suspend fun getProducts(): Flow<List<Product>>
 
 }

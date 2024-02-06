@@ -12,8 +12,4 @@ class HomeRepositoryImpl : HomeRepository {
     override suspend fun getApiProducts(): List<Product> {
         return httpClient.get("https://fakestoreapi.com/products").body()
     }
-
-    override suspend fun getProducts(): Flow<List<Product>> {
-        return flow { emit(getApiProducts()) }
-    }
 }
