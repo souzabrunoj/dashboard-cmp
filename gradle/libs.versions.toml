@@ -17,10 +17,11 @@ androidx-test-junit = "1.1.5"
 
 junit = "4.13.2"
 kotlin = "1.9.22"
-coroutines = "1.7.3"
+coroutines = "1.8.0-RC2"
 ktor = "2.3.7"
 moko-mvvm = "0.16.1"
 image-loader = "1.7.3"
+kotlinx-serialization = "1.6.2"
 
 # Koin
 koin-core = "3.4.3"
@@ -44,6 +45,8 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loader" }
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
 
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-core" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-core" }
@@ -56,11 +59,11 @@ compose-material-icons = { module = "androidx.compose.material:material-icons-ex
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-util = { module = "androidx.compose.ui:ui-util" }
-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-runtime = { module = "androidx.compose.runtime:runtime" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity" }
 compose-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "compose-constraintlayout" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "compose-material3" }
-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose-runtime" }
 
 # Coroutines
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }

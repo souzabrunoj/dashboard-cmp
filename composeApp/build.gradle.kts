@@ -30,11 +30,12 @@ kotlin {
     
     sourceSets {
         androidMain.dependencies {
-            implementation(libs.compose.ui.tooling.preview)
 
             implementation(project.dependencies.platform(libs.compose.bom))
             implementation(libs.compose.ui)
             implementation(libs.compose.activity)
+            implementation(libs.compose.ui.tooling)
+            implementation(libs.compose.tooling.preview)
 
             implementation(libs.coroutines.android)
             implementation(libs.ktor.okhttp)
@@ -43,9 +44,11 @@ kotlin {
         }
 
         commonMain.dependencies {
+            implementation(project.dependencies.platform(libs.compose.bom))
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.material)
             implementation(compose.ui)
 
             implementation(libs.coroutines.core)
@@ -62,6 +65,7 @@ kotlin {
             implementation(libs.koin.core)
             api(libs.image.loader)
 
+            implementation(libs.kotlinx.serialization)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
         }
@@ -101,9 +105,5 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    dependencies {
-        debugImplementation(libs.compose.ui.tooling)
     }
 }
