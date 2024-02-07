@@ -129,7 +129,7 @@ object HomeScreen : Screen {
                             .clickable(onClick = { onItemClicked(product) }),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         shape = RoundedCornerShape((16.dp)),
-                        elevation = CardDefaults.cardElevation(2.dp)
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp, pressedElevation = 2.dp)
                     ) {
 
                         Column(
