@@ -2,6 +2,7 @@
 package br.com.souzabrunoj.storekmp.presentation.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
@@ -42,9 +43,14 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import br.com.souzabrunoj.storekmp.presentation.HomeViewModel
+import br.com.souzabrunoj.storekmp.components.FullScreenLoading
+import br.com.souzabrunoj.storekmp.domain.model.Product
+import br.com.souzabrunoj.storekmp.presentation.screenModel.HomeState
+import br.com.souzabrunoj.storekmp.presentation.screenModel.HomeViewModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import com.seiko.imageloader.rememberImagePainter
 import kotlinx.coroutines.launch
 
@@ -53,22 +59,35 @@ import kotlinx.coroutines.launch
 object HomeScreen : Screen {
     @Composable
     override fun Content() {
-        MaterialTheme {
-            StepContent()
-        }
-    }
-
-    @Composable
-    private fun StepContent() {
+        val navigator = LocalNavigator.currentOrThrow
         val viewModel = getScreenModel<HomeViewModel>()
-        val state by  viewModel.state.collectAsState()
-        val scrollState = rememberLazyGridState()
-        val coroutineScope = rememberCoroutineScope()
-        var query: String by remember { mutableStateOf("") }
+        val state by viewModel.state.collectAsState()
 
         LaunchedEffect(key1 = viewModel) {
             viewModel.getProducts()
         }
+        MaterialTheme {
+            if (state.isLoading)
+                FullScreenLoading()
+            else
+                StepContent(
+                    state = state,
+                    onSearch = { viewModel.search(it) },
+                    onItemClicked = { product ->
+                        navigator.push(ProductDetailsScreen(product))
+                    })
+        }
+    }
+
+    @Composable
+    private fun StepContent(
+        state: HomeState,
+        onSearch: (String) -> Unit,
+        onItemClicked: (Product) -> Unit
+    ) {
+        val scrollState = rememberLazyGridState()
+        val coroutineScope = rememberCoroutineScope()
+        var query: String by remember { mutableStateOf("") }
 
         Column(
             modifier = Modifier,
@@ -80,10 +99,10 @@ object HomeScreen : Screen {
                 active = false,
                 onActiveChange = {},
                 onQueryChange = {
-                    viewModel.search(it)
+                    onSearch(it)
                     query = it
                 },
-                onSearch = { viewModel.search(it) },
+                onSearch = { onSearch(it) },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,
@@ -106,9 +125,10 @@ object HomeScreen : Screen {
             ) {
                 items(items = state.productsList, key = { products -> products.id }) { product ->
                     Card(
+                        modifier = Modifier.padding(8.dp).fillMaxWidth()
+                            .clickable(onClick = { onItemClicked(product) }),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
                         shape = RoundedCornerShape((16.dp)),
-                        modifier = Modifier.padding(8.dp).fillMaxWidth(),
                         elevation = CardDefaults.cardElevation(2.dp)
                     ) {
 
