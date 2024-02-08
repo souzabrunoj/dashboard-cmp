@@ -13,4 +13,8 @@ actual inline fun <reified T : ScreenModel> Module.viewModelDefinition(
     noinline definition: Definition<T>,
 ): KoinDefinition<T> = factory(qualifier = qualifier, definition = definition)
 
-actual fun getPlatformEngine(): HttpClientEngine = Darwin.create()
+actual fun getPlatformEngine(): HttpClientEngine = Darwin.create {
+    configureRequest {
+        setAllowsCellularAccess(true)
+    }
+}
