@@ -1,11 +1,15 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
+    alias(libs.plugins.cocoapods)
+    alias(libs.plugins.skie)
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinxSerialization)
 }
+
+version = "1.2"
 
 kotlin {
     androidTarget {
@@ -77,6 +81,17 @@ kotlin {
             implementation(libs.ktor.darwin)
             implementation(libs.koin.core)
         }
+    }
+
+    cocoapods {
+        summary = "Common library for the Store starter kit"
+        homepage = "https://github.com/souzabrunoj/store-kmp"
+        framework {
+            isStatic = false // SwiftUI preview requires dynamic framework
+        }
+        extraSpecAttributes["swift_version"] = "\"5.0\"" // <- SKIE Needs this!
+        podfile = project.file("../iosApp/Podfile")
+        ios.deploymentTarget = "15"
     }
 }
 
